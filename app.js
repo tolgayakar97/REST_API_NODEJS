@@ -9,10 +9,11 @@ const app = express(); //When express is invoked, it return an object with metho
 
 //Registering imported carsRouter as a middleware.
 //Router provides to move out the logic out of app.js
-app.use(carsRouter);
+
+app.use('/api/cars', carsRouter); //Adding filter such as localhost:3000/api/cars/...
 
 //#endregion
 
 
-//Starts listening.
+//Starts listening localhost:3000.
 app.listen(3000);
