@@ -8,7 +8,7 @@ const DUMMY_CARS = [
         hp: 500,
         year: 2024,
         segment: 'Coupe',
-        creator: 'user1'
+        creator: 'u1'
     }
 ];
 
