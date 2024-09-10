@@ -1,5 +1,7 @@
 const express = require("express"); //Getting express object from express.js module.
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose'); //Getting mongoose.
+
 
 const carsRouter = require('./routes/carsRouter'); //Importing our routes.
 
@@ -14,6 +16,32 @@ app.use('/api/cars', carsRouter); //Adding filter such as localhost:3000/api/car
 
 //#endregion
 
+//#region Connection to database (Connect MongoDB via Mongoose)
 
-//Starts listening localhost:3000.
-app.listen(3000);
+mongoose
+    .connect('mongodb://localhost:27017/myDatabase') //connect return Promise (async)
+    .then(() => {
+
+        //Starts backend service if connection is established successfully.
+        app.listen(3000);
+    })
+    .catch(error => {
+        console.log(error);
+    });
+
+
+//#region CHECK CONNECTION
+// mongoose.connection.on('connected', () => {
+//     console.log('Mongoose default connection is open.');
+// });
+
+// mongoose.connection.on('error', (err) => {
+//     console.error('Mongoose default connection has occurred ' + err + ' error');
+// });
+
+// mongoose.connection.on('disconnected', () => {
+//     console.log('Mongoose default connection is disconnected');
+// });
+
+//#endregion
+//#endregion
